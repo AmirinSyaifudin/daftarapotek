@@ -1,0 +1,1505 @@
+	LANGKAH LANGKAH LARAVEL APOTEK 
+
+1. INSTAL LARAVEL 5.8 
+
+2. databases & Migration 
+	Route 
+
+3. Controller
+
+4. View 
+
+5. Bootstrap
+
+6. data => Insert Data
+
+7. data => Edit Data 
+
+8. Master Blade 
+
+9. data => Delete Data 
+
+10. Search Data
+
+
+1. Admin Template, Admin LTE, Klorofil dll
+
+2. Login / Logout 
+
+3. Upload Gambar & Detail Pasien
+
+4. Multilevel User
+
+5. Relationship Penyakit Pasien => MANY TO MANY 
+
+6. Form Validation
+
+7. Input Obat Pasien 
+
+8. membuat Grafik Chart
+
+9. JQuery ajax edit Obat 
+
+10. Relasi One To Many 
+
+
+
+1. Helper & Custom Function 
+
+2. Package export EXCEL & PDF 
+
+3. Route model binding, Sweetalert & Toastr  
+
+4. Halaman Muka Template Website 
+
+5. Pendaftaran Registrasi Pasien 
+
+6. Setting Website 
+
+7. Add POST 
+
+8. blogging 
+
+9. Detail Pasien Lanjut
+
+10. yajra dataTable
+
+
+
+
+
+
+1.https://docs.laravel-excel.com/3.1/getting-started/installation.html
+
+
+2.composer require maatwebsite/excel
+
+
+3. php artisan vendor:publish
+
+
+ php artisan vendor:publish
+
+ Which provider or tag's files would you like to publish?:
+  [0 ] Publish files from all providers and tags listed below
+  [1 ] Provider: BeyondCode\DumpServer\DumpServerServiceProvider
+  [2 ] Provider: Fideloper\Proxy\TrustedProxyServiceProvider
+  [3 ] Provider: Illuminate\Foundation\Providers\FoundationServiceProvider
+  [4 ] Provider: Illuminate\Mail\MailServiceProvider
+  [5 ] Provider: Illuminate\Notifications\NotificationServiceProvider
+  [6 ] Provider: Illuminate\Pagination\PaginationServiceProvider
+  [7 ] Provider: Laravel\Tinker\TinkerServiceProvider
+  [8 ] Provider: Maatwebsite\Excel\ExcelServiceProvider
+  [9 ] Tag: config
+  [10] Tag: laravel-errors
+  [11] Tag: laravel-mail
+  [12] Tag: laravel-notifications
+  [13] Tag: laravel-pagination
+ > 8
+8?[K
+
+?[32mCopied File?[39m ?[33m[\vendor\maatwebsite\excel\config\excel.php]?[39m ?[3
+2mTo?[39m ?[33m[\config\excel.php]?[39m
+?[32mPublishing complete.?[39m
+
+
+ CATATAN PENTING (((( pilih no 8   )))) 
+
+
+4. pindah URL 
+
+https://docs.laravel-excel.com/3.1/exports/
+
+
+5.  php artisan make:export PasienExport --model=Pasien
+Export created successfully.
+
+
+
+6. masuk paseincontroller
+
+// export excel 
+use App\Exports\PasienExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+
+
+7. bikin function excel 
+
+	public function exportexcel() 
+     {
+         return Excel::download(new PasienExport, 'Pasien.xlsx');
+     }
+
+
+
+
+8. selanjutnya bikin Route 
+	//pertemuan ke 23 export excel 
+        Route::get('/pasien/exportexcel','PasienController@exportExcel');
+
+
+9. masuk file 
+	index.blade.php 
+
+	// tambahkan code 
+
+	
+
+
+0.
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+0.
+
+
+
+
+
+
+
+create
+laravel CRUD 
+
+PERTEMUAN 1 SAMPAI 10 
+
+
+
+1. buat folder 
+	isi dengan laravel 5.8 
+	
+
+2. buat datadases di localhost 
+
+	sambungkan, konfigurasikan dengan laravel 
+
+	
+
+3. membuat table menggunakan make:migration 
+	
+	.
+	$ php artisan make:migration create_kelurahan_table --create=kelurahan
+Created Migration: 2019_10_03_013414_create_kelurahan_table
+
+
+
+
+4. edit Appserver di PROVIDER
+
+	edit Appserver di PROVIDER
+
+		use Illuminate\Support\Facades\Schema; // tambahan dari laravel
+
+	
+	 	 Schema::defaultStringLength(191);
+
+
+  * @return void
+     */
+    public function boot()
+    {
+        //
+        Schema::defaultStringLength(191);
+
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+
+5.  jalankan perintah migrate, sukses apa error, dan jika error 
+
+6.    hapus tables di databases
+
+	hapus tabel user 
+	hapus tabel password 
+
+7. 	membuat Route siswa 
+
+	Route::get('/kelurahan','KelurahanController@index');
+
+8. jalankan terminla 
+
+	 php artisan make:controller KelurahanController
+Controller created successfully.
+
+
+9. buka controller Kelurahan
+
+
+10.  buat folder kelurahan di dalam view
+	buat fiel 
+	
+	index.balde.php 
+
+
+
+
+
+11. BUat MODEL 
+
+	masuk terminal
+
+	
+	 php artisan make:model Kelurahn
+	Model created successfully.
+
+	catatan model yang akan berkomunikasi dengan tabel Kelurahan
+
+
+2. MODIFIKASI TABEL DENGAN BOOSTREET
+	
+	view-> kelurahan -> 
+
+	index.blade.php 
+
+- tambahkan code HTML 
+
+
+
+- pembungkus boostreet 
+
+  <!-- pembungkus boostreet -->
+    <div class="container">
+        <div class="row">
+
+	(isi code ini di bawahnya )
+
+	</div>
+	</div>
+
+
+-tambahkan code di dalam pembungkus boostreet 
+
+ 		<div class="col-6">
+                    <!-- s -->
+                    <h2>DATA KELURAHAN</h2>      
+               </div>
+
+
+- templekan css boostreet
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+
+
+
+
+tempelkan js boostreet 
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+
+3. tambahkan modal di boostreet 
+
+
+	<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  			Launch demo modal
+		</button>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+4. tambahkan code form dari boostreet 
+
+
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+.
+
+
+LOGIN FITUR LARAVEL 
+
+
+1. buka terminal 
+
+
+2.  php artisan make:auth
+Authentication scaffolding generated successfully.
+
+
+3. selanjutnya migrasi dulu ke databases
+
+4.selanjutnya lakukan register di login 
+
+isi form input register 
+kemudian tekan submit
+
+cek di databases, akan muncul username dan password 
+
+
+
+
+
+
+
+5. PENERAPAN TEMPLATE ADMIN BOOSTREET 
+
+	download tempalte admin di boostreet 
+
+
+	https://getbootstrap.com/docs/4.3/components/navbar/
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+6. di dalam folder latouts 
+
+buat fiel 
+
+master.balde.php 
+
+copy code html css dan js ke dalam fiel master.blade.php
+
+
+7. fitur Pencarian menggunakan SUPER GLOBAL VARIABEL MENGGUNAKAN URL 
+
+	// tambahkan code di pasiencontroller.php 
+
+	 if ($request->has('cari')){
+     		  $data_pasien = \App\Pasien::where('nama_pasien','LIKE','%'.$request-	>cari.'%')->get();
+    	 } else {
+      		 $data_pasien = \App\Pasien::all();
+     
+
+
+
+8. 	// tambahkan code di mster.blade.php untuk sistem pencarian 
+	
+ 	<form class="form-inline my-2 my-lg-0" method="GET" action="/pasien">
+      		<input name="cari" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+
+
+
+
+
+
+1.				FORM VALIDATE TAMBAH PASIEN 
+	
+2.	PaseinController.php 
+
+
+   $this->validate($request,[
+        'nama_pasien' => 'required| min:2',
+       // 'email' => 'required|email|unique:users', // berfungsi agar siswa tidak boleh memiliki email yang sama // catatan email ada di tabel user, code di edit menjadi users
+        'tanggal_lahir' => 'required',
+        'agama' => 'required',
+        'jenis_kelamin' => 'required',
+        'no_telpon' => 'required',
+        'alamat' => 'required',
+      ]);
+
+
+
+
+3. masuk index.blade.php
+
+			index.blade.php 
+
+
+	<!-- has-error artisan form validation -->
+            <div class="form-group{{$errors->has('nama_pasien') ? 'has-error' : ''}}"> 
+                                                         
+
+
+	 <!-- untuk menampilkan error di form tambah siswa nama depan  -->
+           @if($errors->has('nama_pasien'))
+                <span class="help-block">{{$errors->first('nama_pasien')}}</span> 
+            @endif
+          </div>
+
+
+
+
+
+
+
+						PENAMBAHAKN FOTO PADA PASIEN 
+
+1.  	
+
+2. tambahkan code di 
+	view / pasien
+	edit.blade.php 
+
+	code untuk upload foto 
+
+ 	<div class="form-group">
+             <label for="exampleFormControlTextarea1">GAMBAR</label>
+             <input type="file" name="gambar" class="form-control" id="exampleFormControlTextarea1">
+         </div>
+
+
+
+3. masuk ke controller 
+
+tambahkan code di function update 
+
+	
+
+  // perintah untuk memasukkan gambar 
+      if($request->hasFile('gambar')){
+        $request->file('gambar')->move('images/', $request->file('gambar')->getClientOriginalName());
+        // perintah untuk memasukkan gambar ke database
+        $pasien->gambar = $request->file('gambar')->getClientOriginalName();
+        $pasien->save();
+
+
+
+4. masuk ke model 
+
+tambahkan code 
+
+// tambahkan 'gambar'
+ protected $fillable = ['nama_pasien','tanggal_lahir','agama','jenis_kelamin','no_telpon','alamat','gambar']; // untuk menambahkan data/ create
+
+
+
+// untuk mengakali gambar, atau gambar dengan nilai null 
+    public function getGambar()
+    {
+        if(!$this->gambar){
+            return asset('images/defaul.jpg');
+
+        }
+        return asset('images/'.$this->gambar);
+    }
+
+
+
+
+5. edit code di 
+	detail.blade.php 
+
+
+ 	<figure class="figure">
+                <img src="{{$pasien->getGambar()}}" class="figure-img img-fluid rounded" alt="Gambar">
+                <figcaption class="figure-caption">Keterangan Gambar</figcaption>
+        </figure>
+
+
+6.
+
+
+
+				LOGIN LARAVEL 
+
+
+
+10. membuat tampilan di Route dengan tampilan Home, dan membuat Dashbord dengan sistem penulisan seperti membuat data siswa
+
+	Route::get('/', function () {
+    		return view('home');
+
+
+
+	Route::get('/dashboard','DashboardController@index');
+
+
+
+11. php artisan make:controller DashbordController
+
+12. membuat Route Login di Route 
+	Route::get('/login','AuthController@login');
+
+
+13. membuat logincontroller 
+	
+	php artisan make:controller AuthController
+	Controller created successfully.
+
+
+14. membuat folder di view 
+
+	folder auths
+
+	buat file 
+
+	login.blade.php 
+
+
+
+15. buka AdminLTE 
+	
+	buka page login.blade.php di AdminLTE 
+
+	copi file tersebut di 
+	
+
+	login.blade.php laravel 
+
+
+16.	buat folder adminlte di dalam public 
+ 
+	copy file asli dari AdminLTE 
+	
+	- bower_components
+	-dist
+	-img
+	-plugins
+	-css
+	-js
+
+
+17. modifikasi login.balde.php 
+
+	
+  <form action="/postlogin" method="post">
+    {{csrf_field()}}
+      <div class="form-group has-feedback">
+        <input name="email" type="email" class="form-control" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input name="password" type="password" class="form-control" placeholder="Password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+
+
+
+17. Route 
+
+	Route::post('/postlogin','AuthController@postlogin');
+
+17. controller 
+
+	
+	  public function postlogin(Request $request)
+    {
+        // dd($request->all());
+        // membuat class percabangan 
+        if(Auth::attempt($request->only('email','password'))){
+         return redirect('/dashboard');   // kalo berhasil langsung di redirect ke halaman dashboard 
+        }
+            return redirect('/login');   
+    }
+
+
+17.
+
+17.
+
+17.
+
+
+
+
+
+18. selanjutnya memasukkan data email dan password melalui terminal 
+	php artisan tinker 
+
+masuk terminal 
+php artisan tinker 
+
+	
+>>> $user = new \App\User;
+=> App\User {#2955}
+>>> $user->name = "admin"
+=> "admin"
+>>> $user->email = "admin@gmail.com"
+=> "admin@gmail.com"
+>>> $user->password = bcrypt('rahasia')
+=> "$2y$10$GCc4wZ0ldN/raenQHMIiU.PDlyHWvjzJHuB.bx5E212/lJZQ0zn2y"
+>>> $user->remember_token = str_random(60)
+=> "VV0dkNJHJkqCaWOvUwBEoexR7YWceUKhGXETbSEFDOPmSZ3Zlcv6uoyrOtSD"
+>>> $user->save()
+=> true
+
+
+
+SUKSES 
+
+19. selanjutnya membuat logout 
+
+	buka fiel 
+	master.blade.php 
+	
+	edit link 
+
+
+	<li class="nav-item active">
+        <a class="nav-link" href="/logout">Log Out <span class="sr-only">(current)</span></a>
+      </li>
+
+
+20. selanjutnya membuat Route 
+
+	Route::get('/logout','AuthController@logout');
+
+
+21. ke controller 
+
+	 public function logout()
+    {
+        Auth::logout();
+        return redirect('login');
+    }
+
+
+
+
+
+22. SELANJUTNYA MENGGUNAKAN MILDEWAREE DARI LARAVEL 
+
+23. Route
+
+	// fitur MIDDLEWARE UNTUK MELINDUNGI JIKA ADA USER YANG INGIN MASUK KE SISTEM 
+	Route::group(['middleware' => 'auth'],function(){
+
+			..... Route CRUD .....
+
+	}); // penutup middleware 
+
+24.
+25.
+26.
+27.
+28.
+29.
+30.
+
+
+15. membuat sistem login 
+
+16. copy dari index klorofil login.php kemudian di paste di sistem login.blade.php
+
+17. membuat Route 
+
+18. membuat Controller@postlogin
+
+19. membuat login.blade.php dan mengeditnya
+
+20. menambahkan data users melalui terminal 
+
+21.php artisan tinker
+	Psy Shell v0.9.9 (PHP 7.2.7 — cli) by Justin Hileman  // tinker adalah fitru dari laravel yang di gunakan untuk mengeksekusi kode PHP di commerline
+
+22. $user = new \App\user;
+	=> App\User {#2944}
+23.$user->name = "amirsy"
+	=> "amirsy"
+
+24. $user->email = "amirinsyaifudin6@gmail.com"
+	=> "amirinsyaifudin6@gmail.com"
+25. $user->password = bcrypt('amirganteng21')      // bcrypt adalah fitur dari laravel untuk password
+	=> "$2y$10$Uj8PirZ5GABBIWH2vul9PuhfDsCDxYTVDKY5jlQZZM2PWDjGJoPeC"
+
+26. $user->remember_token = str_random(60)
+	=> "teAIo6GOO1gvbYlXenbt01w9ar1H939SAehQtKjwxIl2XZOnEPzaFVp03llR"
+27. $user->save()      // untuk mnyimpan data yang sudah di buat
+	=> true
+
+
+28. SUKSES
+
+29. membuat sistem logout
+
+30. mengedit file _navbar.blade.php 
+
+31. penambahan "/logout" 
+
+32. SUKSES tapi masalah masik bisa masuk ke sistem tanpa login, ubah edit lagi 
+
+33. {{auth()->user()->name}} 		// penambahana ke _NAVBAR untuk fleksibilitas nama user 
+
+
+34. SUKSES LOGIN LOGOUT // PERTEMUAN KE 14 MENIT 00:00
+
+
+
+
+
+
+	PERTEMUAN KE 15 
+		MULTILEVEL USERS
+
+
+
+1. untuk membuat multilavel users, maksudnya adalah untuk ada banyak admin yang bisa akses sistem,
+	contoh admin, admin super, admin apotek, admin siswa, dll. dan membatasi hak akses mereka sesuai peran mereka masing masing.
+
+
+2. modifikasi tabel user, 
+
+	tambahkan satu kolom nama dengan nama role dengan type data varchar
+
+
+
+3. RELASI ONE TO ONE 
+	SATU USER MEMILIKI SATU SISWA 
+	 
+   tambah kan kolom user_id di tabel pasien, 
+	CATATA PENTING :: fiel atao kolom user_id yang ada di tabel pasien akan berelasi dengan tabel users
+
+USER_ID TIDAK BOLEH NULL,, HARUS ADA ISINYA 
+
+
+
+
+4.balik $user di atas $pasin biar ada request dari user terlebih dahulu 
+
+
+
+5. code ini di atas 
+
+	   //Insert ke table Users
+      $user = new \App\User;
+      $user->role = 'pasien';
+      $user->name = $request->nama_pasien;
+      $user->email = $request->email;
+      $user->password = bcrypt('rahasia');
+      $user->remember_token = str_random(60);
+      $user->save();
+
+
+6. code ini di bawah 
+
+	     // multilevel user 
+       // Insert ke table siswa
+      $request->request->add(['user_id' => $user->id]); // di gunakan untuk menambahkan request all user_id 
+      $pasien = \App\Pasien::create($request->all()); // code di atas untuk menambahkan request->all()
+
+
+7. buka MODEL Pasien.php 
+	tambahkan user_id di dalam array  protected $fillable
+
+	
+	
+
+8. SELANJUTNYA 	membatasi hak akses pasien menggunakan middleware di Route,
+ agar pasein tidak dapat menambahkan data pasien atau menginput data di dalam sistem 
+
+CATATAN : membatasi hak akses bisa menggunakan middleware 
+
+1. selanjutnya membuat middleware sendiri bergunan untuk mengkontrol hak akses 
+	siapa saja yang bisa masuk ke sistem CRUD
+
+2. buka terminal 
+
+	php artisan make:middleware CheckRole
+	Middleware created successfully.
+
+
+
+3. selanjunya chek Middlaware di folder app->Http->Middleware
+
+
+4. CheckRole.php
+
+
+	 public function handle($request, Closure $next,$role)
+    {
+        if($request->user()->role == $role){ // buat percabangan, apakah yang me request user yang login sama dengan role di parameter
+             // kalo sama memiliki role sesuai di paramater aplikasi boleh di lanjutnya 
+            return $next($request);
+        }
+        // kalo gak ada, kalo role tisak sesuai kama aplikasi akan ke redirect ke Route
+           return redirect('/');
+    }
+
+
+
+5. selanjutnya registrasi middleware yang sudah di buat ke laravelnya 
+
+
+6. rigistrasi moddleware 
+	
+	Buka 
+	Karnel.php
+
+	'checkRole' => \App\Http\Middleware\CheckRole::class,    // registrasi Middleware pertemuan ke 15  
+ 
+	
+
+7. modifikasi Route Auth 
+
+	Route::group(['middleware' => ['auth','checkRole:admin']],function(){ // yang bisa mengakses CRUD adalah checkRole parameter admin 
+
+	
+	 }); // penutup middleware 
+
+
+8. Tambah satu Route lagi, Untuk Route Dashboars untuk parameter pasien 
+ 
+	  // fitur menggunakan 2 auth atau lebih
+            Route::group(['middleware' => ['auth','checkRole:admin,pasien']],function(){ // yang bisa mengakses CRUD adalah checkRole parameter admin 
+                Route::get('/dashboard','DashboardController@index');
+            });
+
+
+
+
+
+
+9. modifikasi Middleware
+	 CheckRole.php 
+		
+
+
+
+	CODE SEBELUM DI MODIFIKASI  
+    
+    public function handle($request, Closure $next,$role)
+    {
+        if($request->user()->role == $role){ // buat percabangan, apakah yang me request user yang login sama dengan role di parameter
+             // kalo sama memiliki role sesuai di paramater aplikasi boleh di lanjutnya 
+            return $next($request);
+        }
+        // kalo gak ada, kalo role tisak sesuai kama aplikasi akan ke redirect ke Route
+           return redirect('/');
+    }
+
+
+
+
+	SESUDAH DI MODIFIKASI 
+
+    public function handle($request, Closure $next,...$roles) // artinya untuk banyak role 
+    {
+        if(in_array($request->user()->role,$roles)){ // buat percabangan, apakah yang me request user yang login sama dengan role di parameter
+             // kalo sama memiliki role sesuai di paramater aplikasi boleh di lanjutnya 
+            return $next($request);
+        }
+        // kalo gak ada, kalo role tisak sesuai kama aplikasi akan ke redirect ke Route
+           return redirect('/');
+    }
+
+
+10.	SUKSES, KETIKA ADMIN LOGIN SUKSES UNTUK MELAKUKAN CRUD 
+	TAPI KETIKA PASIEN LOGIN TIDAK BISA CRUD 
+	pasien login akan di rederect ke Dashboard 
+
+
+
+1. 	(Selanjutnya menghilangkan MENU NAMA PASIEN, NAMA DOKTER CRUD, 
+	DI DALAM MENU ADMIN CRUD, MEGHILANGKAN KARNA PASIEN TIDAK BISA AKSES CRUD) 
+
+	MENGHINLANGKAN MENU PASEI DAN MENU DOKTER DI DALAM ADMIN 
+	buka 
+	master.blade.php 
+		tambahkan code ini 
+
+	 <!-- membuat percabanan, untuk menghilangkan nama menu saat pasien login  -->
+                @if(auth()->user()->role == 'admin')
+			ISI NAMA MENU ADMIN
+		@endif
+	
+	
+ SUKSES PERTEMUAN KE 15 MULTILEVEL USERS
+
+
+
+
+
+
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+
+
+
+
+	SUKSES DI MENIT 14 PERTEMUAN KE 15
+
+
+
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+	PERTERMUAN KE 16 RELASI TABEL MANY TO MANY
+
+
+
+
+1. membuat satu tabel lagi dengan pivot tabel aturan dari laravel 
+	membuat tabel => tabel pasien_penyakit
+
+	hubungan many to many 
+	=> karena setiap pasien bisa memiliki banyak penyakit
+	=> dan setiap penyakit bisa dimiliki banyak pasien 
+
+	hubungan banyak ke banyak di sebut many to many 
+	buat tabel => pasien_penyakit
+
+ 
+ 
+
+
+2. MODEL 
+	=> RELASI MANY TO MANY 
+	=> BANYAK KE BANYAK 
+
+
+Pasien.php 
+
+	 public function penyakit()
+    {
+     return $this->belongsToMany(Penyakit::class);  
+
+    }
+
+
+
+
+
+
+
+Penyakit.php 
+
+	 public function pasien()
+    {
+         return $this->belongsToMany(Pasien::class);
+      
+    }
+
+
+
+
+3. TANDA TABEL SUDAH BERRELASI 
+	buka php artisan tinker 
+	
+
+	 $pasien = App\Pasien::find(11)
+=> App\Pasien {#2981
+     id: 11,
+     user_id: 0,
+     nama_pasien: "Izza",
+     tanggal_lahir: "20 - Juli - 1994",
+     jenis_kelamin: "P",
+     agama: "ISLAM",
+     no_telpon: "0987689098",
+     gambar: "elthof-razita-kerudung-instan_l-699-1414.png",
+     alamat: """
+       Banjir Kanal\r\n
+       Semarang
+       """,
+     created_at: "2019-10-07 04:00:40",
+     updated_at: "2019-10-15 07:07:43",
+   }
+
+4. TANDA SUDAH BERRELASI 
+
+
+
+	$pasien->penyakit
+=> Illuminate\Database\Eloquent\Collection {#2987
+     all: [
+       App\Penyakit {#2984
+         id: 1,
+         nama_penyakit: "Flu",
+         jenis_penyakit: "Penyakit Hidung ",
+         created_at: "2019-10-17 10:18:02",
+         update_at: "0000-00-00 00:00:00",
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#2977
+           pasien_id: 11,
+           penyakit_id: 1,
+         },
+       },
+       App\Penyakit {#2991
+         id: 5,
+         nama_penyakit: "Jamur Kulit ",
+         jenis_penyakit: "Penyakit Kulit ",
+         created_at: "2019-10-17 10:20:30",
+         update_at: "0000-00-00 00:00:00",
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#150
+           pasien_id: 11,
+           penyakit_id: 5,
+         },
+       },
+     ],
+   }
+
+
+
+
+
+5. MODEL 
+	PIVOT TABLE
+		MEMANGGIL DATA PIVOT tabel penyakit_pasien dengen file obat 
+	Penyakit.php 
+
+	   public function pasien()
+    {      
+         return $this->belongsToMany(Pasien::class)->withPivot(['obat']);
+    }
+
+
+
+6. Pasien.php 
+
+
+	public function penyakit()
+    {
+     return $this->belongsToMany(Penyakit::class)->withPivot(['obat']);
+    }
+
+
+
+7. detail.blade.php 
+
+	
+    									<thead class="thead-dark">
+                                                                            <tr>
+                                                                                <th>NAMA PENYAKIT</th>
+                                                                                <th>JENIS PENYAKIT</th>
+                                                                                 <th>OBAT</th> 
+                                                                                <!-- <th>DOKTER</th> -->
+                                                                                <th> </th>
+                                                                            
+                                                                            </tr>
+                                                                        <thead>
+
+                                                                        <tbody>
+                                                                            @foreach($pasien->penyakit as $penyakit)
+                                                                                <tr>
+                                                                                    <td>{{$penyakit->nama_penyakit}}</td>
+                                                                                    <td>{{$penyakit->jenis_penyakit}}</td>
+                                                                                    <!-- pemanggilan pivot tabel , manty to many -->
+                                                                                    <td>{{$penyakit->pivot->obat}}</td>
+                                                                                   <!-- <td> </td> -->
+                                                                                   
+                                                                                    <td> <a href="/pasien/{{$pasien->id}}/{{$penyakit->id}}/deleteobat" class="btn btn-danger btn-sm" onClick="return confirm('Yakin mau dihapus....?')">Delete</a>  </td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                        </tbody>
+
+
+
+
+8.
+
+9.
+
+10.
+
+
+
+
+
+
+
+RELASI ANTAR TABEL
+
+HUBUNGNA ANTAR TABEL ONE TO ONE
+
+menghubungkan tabel pasein dan tabel kelurahan 
+
+1. aturan pakai kosep pivot table dari laravel, 
+
+
+2. membuat tabel satu lagi untuk di gunakan pivot untuk menghubungkan tabel pasien dan tabel kelurahan 
+
+3. membuat tabel 
+	kelurahan_pasien 
+
+4. aturan dari laravel menggunakan pivot tabel 
+ huruf paling awal di gunakan untuk penamaan tabel 
+
+contoh menggunakan nama tabel 
+"kelurahan_pasien"
+aturan dari laravel udah seperti itu 
+
+
+
+5. databases selesai di buat 
+	kelurahan_pasien
+
+6. selanjutnya membuat model kelurahan
+
+7. mendeklarasikan relasi antar tabel, 
+
+8. menghubungkan relasi antar model , pasien dan kelurahan 
+
+tambahkan code di Model
+
+Model Pasien dan Model Kelurahan
+
+9. Kelurahan.php 
+
+
+public function pasien()
+{
+    return $this->belongsToMany(Pasien::class);
+}
+
+
+
+10. Pasien.php
+
+public function Kelurahan()
+{
+    return $this->belongsToMany(Kelurahan::class);
+}
+
+
+
+
+
+1. code di atas untuk menghubungkan relasi antar tabel menggunakan pivot dari bawaan laravel
+
+
+2.
+
+3.
+
+4. uji untuk membuktikan sukses Relasi 
+
+5. buka terminal bash 
+
+	php artisan tinker 
+
+6. menghubungkan tabel pasien dan tabel kelurahan
+
+	$pasien = App\Pasien::find(13)
+	
+	kalo sukses muncul di terminal data dengan id 13
+
+
+
+	$pasien = App\Pasien::find(11)
+
+	kalo sukses muncul di terminal data dengan id 13
+
+7. untuk menguji relasi tabel pasein dan tabel kelurahan
+
+	$pasein->kelurahan
+
+
+8.
+
+9.
+
+10.
+
+
+
+
+
+PERTEMUAN KE 17 
+
+RELASI ONE TO ONE 
+
+
+1. ubah code 
+	model
+Pasien.php 
+
+ return $this->belongsToMany(Penyakit::class)->withPivot(['obat']);
+
+
+
+2.	Model  
+
+	Penyakit.php
+
+	return $this->belongsToMany(Pasien::class)->withPivot(['obat']);
+
+	Model 
+
+	
+
+3. detail.balde.php 
+	// echo pemanggilan pivot tabel 
+
+	<td>{{$penyakit->pivot->obat}}</td>
+
+4.
+
+5.
+
+
+
+
+
+PERETEMUAN KE 18 
+
+MEMASUKKAN DATA KE TABEL PIVOT 
+
+
+INPUT OBAT PASIEN 
+
+
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+
+
+
+
+
+	TEMPLATE FRONTEND 
+
+1. donwload template admin 
+`- copy template frontend di public dengan nama "frontend"
+  - copy 4 bagian dari bawaan template 
+	1. css 
+	2. fonts
+	3.img
+	4.js 
+
+
+2. buat file di dalam layouts 
+	nama file
+	frontend.blade.php 
+	
+	copy index.html di dalam fiel frontend.balde.php 
+
+	panggil scc dan js nya di dalam skrip 
+
+		css
+	<!-- css -->
+  	<link href="frontend/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+		js 
+	<!-- Core JavaScript Files -->
+  	<script src="frontend/js/jquery.min.js"></script>
+
+	
+
+3. buat file medical.php di dalam config , berguna untuk membuat kalimat di dalam tampilan frontend 
+	
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+
+
+
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+
+
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+
+
+
+
+
