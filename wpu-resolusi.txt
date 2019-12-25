@@ -3,4 +3,4 @@ WPU RESOLUSI
 - membuat platfrom untuk pengolahan video 
 - membuat forum diskusi 
 - kaloborasi dengan lebih banyak expert 
-- file PDF
+- tambah vlog
