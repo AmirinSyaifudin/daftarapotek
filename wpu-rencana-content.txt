@@ -1,10 +1,11 @@
 - Javascript
   * ES6
   * Framework Javascript
-    ^ Angular 
-    ^ React
+  ^ Vue
+  ^ React
   * Struktur Data Dasar
 - PHP Framework 
-    ^ React
+  ^ Laravel
 - Interview 
 - vlogs
+  ^Python 
